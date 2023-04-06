@@ -6,6 +6,8 @@ flask_sqlalchemy==3.0.3
 itsdangerous==2.1.2
 Jinja2==3.1.2
 MarkupSafe==2.1.2
+marshmallow==3.19.0
+marshmallow_sqlalchemy==0.29.0
 pip==23.0.1
 pg8000==1.29.4
 python-dotenv==1.0.0
