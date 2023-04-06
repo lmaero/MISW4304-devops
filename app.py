@@ -1,17 +1,19 @@
-import os
-
 from dotenv import load_dotenv
 from flask import Flask
-from flask_cors import CORS
 
-# Environment variables
+from src.startup.app_config import config_app
+from src.startup.db_connection import init_db
+from src.startup.app_env import APP_DEBUG, APP_PORT
+
+# Load environment variables
 load_dotenv()
 
-DEBUG = os.environ.get("FLASK_DEBUG") or 0
-PORT = os.environ.get("CONFIG_PORT") or 5000
-
+# App configuration
 app = Flask(__name__)
-cors = CORS(app)
+config_app(app)
+
+# Database initialization
+init_db(app)
 
 
 @app.route("/blacklists", methods=["POST"])
@@ -30,4 +32,4 @@ def check_service():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=DEBUG, port=PORT)
+    app.run(host="0.0.0.0", debug=APP_DEBUG, port=APP_PORT)
