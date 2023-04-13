@@ -9,12 +9,16 @@ from src.models.blacklisted import Blacklisted
 from src.schemas.blacklisted import BlacklistedSchema
 def post_add_email_to_blacklist(db, request):
     try:
-        data = request.get_json()
+        email = request.args.get("email")
+        app_uuid = request.args.get("app_uuid")
+        blocked_reason = request.args.get("blocked_reason")
+        ip_address = str(request.remote_addr)
+
         new_blacklisted = Blacklisted(
-            email=data["email"],
-            app_id=data["app_id"],
-            cause=data["reason"],
-            ip_address=data["ip_address"],
+            email=email,
+            app_uuid=app_uuid,
+            blocked_reason=blocked_reason,
+            ip_address=ip_address,
             time=datetime.now().isoformat()
         )
         db.session.add(new_blacklisted)
