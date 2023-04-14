@@ -1,0 +1,35 @@
+version: '3.1'
+
+services:
+  micro_blacklist:
+    container_name: "micro_blacklist"
+    build: "./"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - ${CONFIG_PORT}:${CONFIG_PORT}
+    env_file:
+      - .env
+    networks:
+      - microservices
+
+  postgres:
+    container_name: "postgres"
+    image: postgres:15.2-bullseye
+    restart: always
+    env_file:
+      - .env
+    networks:
+      - microservices
+    ports:
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "postgres" ]
+      interval: 2s
+      timeout: 30s
+      retries: 5
+
+networks:
+  microservices:
+    driver: bridge
