@@ -10,7 +10,7 @@ class BlacklistedSchema(SQLAlchemyAutoSchema):
         load_instance = True
 
     email = fields.String()
-    app_id = fields.String()
-    cause = fields.String()
+    app_uuid = fields.String()
+    blocked_reason = fields.String()
     ip_address = fields.String()
     time = fields.String()

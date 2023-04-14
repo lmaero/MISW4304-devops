@@ -22,9 +22,9 @@ def add_email_to_blacklist():
     return post_add_email_to_blacklist(database, request)
 
 
-@app.route("/blacklists/", methods=["GET"])
-def get_email_status():
-    return blackmail_info_get(database, request)
+@app.route("/blacklists/<string:email>", methods=["GET"])
+def get_email_status(email):
+    return blackmail_info_get(email, database, request)
 
 @app.route("/health", methods=["GET"])
 def check_service():
