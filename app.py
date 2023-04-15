@@ -1,10 +1,10 @@
 from dotenv import load_dotenv
 from flask import Flask, request
 
-from src.startup.app_config import config_app
-from src.startup.db_connection import init_db, database
-from src.startup.app_env import APP_DEBUG, APP_PORT
 from src.endpoints.blacklist import post_add_email_to_blacklist, blackmail_info_get
+from src.startup.app_config import config_app
+from src.startup.app_env import APP_DEBUG, APP_PORT
+from src.startup.db_connection import init_db, database
 
 # Load environment variables
 load_dotenv()
