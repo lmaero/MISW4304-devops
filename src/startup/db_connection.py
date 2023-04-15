@@ -9,5 +9,8 @@ database = SQLAlchemy()
 
 
 def init_db(app):
-    database.init_app(app)
-    database.create_all()
+    try:
+        database.init_app(app)
+        database.create_all()
+    except Exception as e:
+        print(e)
