@@ -9,9 +9,11 @@ def post_add_email_to_blacklist(db, request):
     try:
         data = request.get_json()
 
-        bearer = request.headers.get('Authorization')
-        if bearer is None or bearer == '':
-            return {"msg": "Authorization header is not in the headers or bearer value is wrong"}, 400
+        bearer = request.headers.get("Authorization")
+        if bearer is None or bearer == "":
+            return {
+                "msg": "Authorization header is not in the headers or bearer value is wrong"
+            }, 400
         if len(bearer.split()) < 2:
             return {"msg": "Token is not in the headers"}, 400
 
@@ -46,6 +48,7 @@ def post_add_email_to_blacklist(db, request):
             ip_address=ip_address,
             time=datetime.now().isoformat(),
         )
+
         db.session.add(new_blacklisted)
         db.session.commit()
         BlacklistedSchema().dump(new_blacklisted)
@@ -60,9 +63,11 @@ def post_add_email_to_blacklist(db, request):
 
 def blackmail_info_get(email, db, request):
     try:
-        bearer = request.headers.get('Authorization')
-        if bearer is None or bearer == '':
-            return {"msg": "Authorization header is not in the headers or bearer value is wrong"}, 400
+        bearer = request.headers.get("Authorization")
+        if bearer is None or bearer == "":
+            return {
+                "msg": "Authorization header is not in the headers or bearer value is wrong"
+            }, 400
         if len(bearer.split()) < 2:
             return {"msg": "Token is not in the headers"}, 400
 
