@@ -27,7 +27,7 @@ def get_email_status(email):
     return blackmail_info_get(email, database, request)
 
 
-@application.route("/health", methods=["GET"])
+@application.route("/", methods=["GET"])
 def check_service():
     return {"msg": "Healthy"}, 200
 
