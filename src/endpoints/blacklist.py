@@ -57,8 +57,7 @@ def post_add_email_to_blacklist(db, request):
             "createdAt": new_blacklisted.time.isoformat(),
         }, 201
     except Exception as e:
-        print(e)
-        return {"msg": "Invalid request"}, 500
+        return {"msg": str(e)}, 500
 
 
 def blackmail_info_get(email, db, request):
