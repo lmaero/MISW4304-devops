@@ -23,6 +23,10 @@ def post_add_email_to_blacklist(db, request):
         if str(email) == "":
             return {"msg": "The email is missing, please provide a valid email"}, 400
 
+        existing_email = db.session.query(Blacklisted).filter_by(email=email).first()
+        if existing_email:
+            return {"msg": "This email was already blacklisted"}, 400
+
         app_uuid = data["app_uuid"]
         if str(app_uuid) == "":
             return {
