@@ -10,26 +10,27 @@ from src.startup.db_connection import init_db, database
 load_dotenv()
 
 # App configuration
-app = Flask(__name__)
-config_app(app)
+application = Flask(__name__)
+config_app(application)
 
 # Database initialization
-init_db(app)
+init_db(application)
 
 
-@app.route("/blacklists", methods=["POST"])
+@application.route("/blacklists", methods=["POST"])
 def add_email_to_blacklist():
     return post_add_email_to_blacklist(database, request)
 
 
-@app.route("/blacklists/<string:email>", methods=["GET"])
+@application.route("/blacklists/<string:email>", methods=["GET"])
 def get_email_status(email):
     return blackmail_info_get(email, database, request)
 
-@app.route("/health", methods=["GET"])
+
+@application.route("/health", methods=["GET"])
 def check_service():
     return {"msg": "Healthy"}, 200
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=APP_DEBUG, port=APP_PORT)
+    application.run(host="0.0.0.0", debug=APP_DEBUG, port=APP_PORT)
