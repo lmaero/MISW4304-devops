@@ -12,10 +12,10 @@ phases:
       - coverage erase
   build:
     commands:
-      - coverage run -m pytest
+      - python -m coverage run -m unittest discover tests/
   post_build:
     commands:
-      - coverage report --fail-under=80
+      - python -m coverage report --fail-under=80
 reports:
   coverage:
     files:
