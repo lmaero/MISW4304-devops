@@ -16,6 +16,7 @@ phases:
   post_build:
     commands:
       - python -m coverage report --fail-under=80
+      - python -m coverage html 
 reports:
   coverage:
     files:
