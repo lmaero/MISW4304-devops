@@ -60,6 +60,7 @@ def post_add_email_to_blacklist(db, request):
         return {"msg": str(e)}, 500
 
 
+
 def blackmail_info_get(email, db, request):
     try:
         bearer = request.headers.get("Authorization")
