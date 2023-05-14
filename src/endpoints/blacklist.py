@@ -18,11 +18,9 @@ def post_add_email_to_blacklist(db, request):
             return {"msg": "Token is not in the headers"}, 400
 
         token = bearer.split()[1]
-        print(token)
-        print(STATIC_TOKEN)
 
         if token != STATIC_TOKEN:
-            return {"msg": "Unauthorized", "token": token, "STATIC": STATIC_TOKEN}, 401
+            return {"msg": "Unauthorized"}, 401
 
         email = data["email"]
         if str(email) == "":

@@ -14,7 +14,7 @@
       "name": "bytecloud",
       "environment": [
         {
-          "name": "SECRET_TOKEN",
+          "name": "STATIC_TOKEN",
           "value": "S1mpl3"
         },
         {
