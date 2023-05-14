@@ -12,10 +12,10 @@
       "image": "<IMAGE1_NAME>",
       "essential": true,
       "name": "bytecloud",
-      "environmentFiles": [
+      "environment": [
         {
-          "value": "arn:aws:s3:::bytecloud-env/.env",
-          "type": "s3"
+          "name": "SECRET_TOKEN",
+          "value": "InVzZXJuYW1lIjoiQWxvbnNvOkNhbWlsbzpEaWVnbzpMdWlzIg=="
         }
       ]
     }
