@@ -17,8 +17,8 @@ phases:
       - echo Pushing the Docker image...
       - docker push 902558168644.dkr.ecr.us-east-2.amazonaws.com/bytecloud:latest
       - echo Writing Image Definitions file...
-      - printf '[{"name":"Container-bytecloud","imageUri":"902558168644.dkr.ecr.us-east-2.amazonaws.com/bytecloud:latest"}]' > imagedefinitions.json
-      - printf '{"ImageUri":"902558168644.dkr.ecr.us-east-2.amazonaws.com/bytecloud:latest"}' > imageDetail.json
+      - printf '[{"name":"bytecloud","imageUri":"902558168644.dkr.ecr.us-east-2.amazonaws.com/bytecloud:latest"}]' > imagedefinitions.json
+      - printf '{"ImageURI":"902558168644.dkr.ecr.us-east-2.amazonaws.com/bytecloud:latest"}' > imageDetail.json
       - cat imagedefinitions.json
 
 artifacts:
