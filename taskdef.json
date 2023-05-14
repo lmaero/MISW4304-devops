@@ -11,7 +11,13 @@
       ],
       "image": "<IMAGE1_NAME>",
       "essential": true,
-      "name": "bytecloud"
+      "name": "bytecloud",
+      "environmentFiles": [
+        {
+          "value": "arn:aws:s3:::bytecloud-env/.env",
+          "type": "s3"
+        }
+      ]
     }
   ],
   "requiresCompatibilities": [
