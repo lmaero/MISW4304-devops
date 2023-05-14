@@ -15,7 +15,7 @@
       "environment": [
         {
           "name": "SECRET_TOKEN",
-          "value": "Bearer InVzZXJuYW1lIjoiQWxvbnNvOkNhbWlsbzpEaWVnbzpMdWlzIg=="
+          "value": "S1mpl3"
         },
         {
           "name": "DB_USER",
