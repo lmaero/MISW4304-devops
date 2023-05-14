@@ -15,7 +15,27 @@
       "environment": [
         {
           "name": "SECRET_TOKEN",
-          "value": "InVzZXJuYW1lIjoiQWxvbnNvOkNhbWlsbzpEaWVnbzpMdWlzIg=="
+          "value": "Bearer InVzZXJuYW1lIjoiQWxvbnNvOkNhbWlsbzpEaWVnbzpMdWlzIg=="
+        },
+        {
+          "name": "DB_USER",
+          "value": "postgres"
+        },
+        {
+          "name": "DB_PASSWORD",
+          "value": "postgres"
+        },
+        {
+          "name": "DB_NAME",
+          "value": "bytecloud-db"
+        },
+        {
+          "name": "DB_PORT",
+          "value": "5432"
+        },
+        {
+          "name": "DB_HOST",
+          "value": "bytecloud-db.cugdqufebutx.us-east-2.rds.amazonaws.com"
         }
       ]
     }
