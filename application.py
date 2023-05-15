@@ -26,6 +26,7 @@ def add_email_to_blacklist():
 def get_email_status(email):
     return blackmail_info_get(email, database, request)
 
+# Comment
 
 @application.route("/", methods=["GET"])
 def check_service():
