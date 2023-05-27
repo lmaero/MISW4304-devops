@@ -1,28 +1,36 @@
 version: 0.2
 
 phases:
-  install:
-    runtime-versions:
-      python: 3.8
-    commands:
-      - pip install -r requirements.txt
-      - pip install pytest coverage
   pre_build:
     commands:
-      - coverage erase
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 902558168644.dkr.ecr.us-east-2.amazonaws.com
   build:
     commands:
-      - python -m coverage run -m unittest discover tests/
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build -t bytecloud .
+      - docker tag bytecloud:latest 902558168644.dkr.ecr.us-east-2.amazonaws.com/bytecloud:latest
   post_build:
     commands:
-      - python -m coverage report --fail-under=80
-      - python -m coverage html 
-reports:
-  coverage:
-    files:
-      - "htmlcov/*"
-    base-directory: "./"
-    
+      - echo Build completed on `date`
+      - echo Pushing the Docker image...
+      - docker push 902558168644.dkr.ecr.us-east-2.amazonaws.com/bytecloud:latest
+      - echo Writing Image Definitions file...
+      - printf '[{"name":"bytecloud","imageUri":"902558168644.dkr.ecr.us-east-2.amazonaws.com/bytecloud:latest"}]' > imagedefinitions.json
+      - printf '{"ImageURI":"902558168644.dkr.ecr.us-east-2.amazonaws.com/bytecloud:latest"}' > imageDetail.json
+      - cat imagedefinitions.json
+
 artifacts:
   files:
     - '**/*'
+    - imagedefinitions.json
+    - imageDetail.json
+  secondary-artifacts:
+    DefinitionArtifact:
+      files:
+        - appspec.json
+        - taskdef.json
+    ImageArtifact:
+      files:
+        - imageDetail.json
